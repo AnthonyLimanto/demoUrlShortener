@@ -1,0 +1,25 @@
+This is an application designed to shorten Urls
+
+To run please run:
+gradlew clean build
+gradlew bootRun
+
+Then in another terminal:
+curl -X POST http://localhost:8080/shorten -H "Content-Type: application/json" -d "{\"url\":\"https://www.originenergy.com.au/electricity-gas/plans.html\"}"\
+curl -X POST http://localhost:8080/shorten -H "Content-Type: application/json" -d "{\"url\":\"https://www.google.com\"}"\
+curl -X POST http://localhost:8080/shorten -H "Content-Type: application/json" -d "{\"url\":\"https://www.example.com\"}"\
+
+These 3 commands will hit our application's endpoint generating a unique nonsequential url that will redirect to the corresponding url.
+
+Another end point that is exposed is the "baseUrl"/info/{code} endpoint. Calling this endpoint with a code generated previously will display information
+Such as what time it was created at and the original url for the new short url.
+
+Error Handling:
+Make sure it return if bad url
+
+Write ways to scale
+ie, use load balancer and multiple servers
+use redis cache to get quicker look ups
+
+
+TODO write unit tests
