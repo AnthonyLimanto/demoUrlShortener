@@ -5,6 +5,7 @@ import com.origin.demo.dto.ShortenResponse;
 import com.origin.demo.model.UrlMapping;
 import com.origin.demo.service.UrlShortenerService;
 import com.origin.demo.utils.UrlValidator;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 
 @RestController
+@Slf4j
 public class UrlShortenerController {
 
     @Autowired
@@ -23,6 +25,7 @@ public class UrlShortenerController {
     public ResponseEntity<ShortenResponse> shorten(@RequestBody ShortenRequest shortenRequest) {
         String url = shortenRequest.getUrl();
         if (!UrlValidator.isValid(url)) {
+            log.error("{} is an invalid Url", url);
             return ResponseEntity.badRequest().build();
         }
         String shortUrl = urlShortenerService.getShortUrl(url);
