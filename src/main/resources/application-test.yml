@@ -1,0 +1,16 @@
+spring:
+    datasource:
+        url: jdbc:h2:mem:short-url-db-test
+        driver-class-name: org.h2.Driver
+        username: test
+        password:
+    jpa:
+        hibernate:
+            ddl-auto: create-drop
+        database-platform: org.hibernate.dialect.H2Dialect
+    h2:
+        console:
+            enabled: false
+
+shortener:
+    base-url: http://localhost:8080

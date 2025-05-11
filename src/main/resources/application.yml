@@ -1,0 +1,8 @@
+spring:
+    application:
+        name: demo
+    profiles:
+        active: dev
+
+shortener:
+    base-url: http://localhost:8080
