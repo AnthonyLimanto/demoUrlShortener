@@ -4,6 +4,7 @@ import com.origin.demo.exception.NotFoundException;
 import com.origin.demo.model.UrlMapping;
 import com.origin.demo.repository.UrlMappingRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,16 +12,13 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
-import java.security.SecureRandom;
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class UrlShortenerService {
 
-    private static final Logger logger = LoggerFactory.getLogger(UrlShortenerService.class);
-    private final SecureRandom random = new SecureRandom();
-    private static final String ALPHABET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     private static final int    CODE_LENGTH = 6;
     private static final int    MAX_RETRIES = 5;
 
@@ -40,7 +38,9 @@ public class UrlShortenerService {
                 urlMappingRepository.save(urlMapping);
                 return baseUrl + "/" + code;
             } catch (DataIntegrityViolationException e) {
-                logger.warn("Collision detected on attempt {}: shortCode='{}'. Retrying... ", attempt, code);
+                log.warn("Collision detected on attempt {}: shortCode='{}'. Retrying... ", attempt, code);
+            } catch (Exception e) {
+                log.error("Unexpected database error while saving URL mapping: {}", e.getMessage(), e);
             }
         }
 
@@ -51,7 +51,7 @@ public class UrlShortenerService {
     public UrlMapping getUrlMapping(String shortCode) {
         Optional<UrlMapping> urlMapping = urlMappingRepository.findByShortCode(shortCode);
         if (!urlMapping.isPresent()) {
-            throw new NotFoundException("Short code not found");
+            throw new NotFoundException("Short Url not found");
         }
         return urlMapping.get();
     }
