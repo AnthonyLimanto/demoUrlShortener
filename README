@@ -15,7 +15,8 @@ Another end point that is exposed is the "baseUrl"/info/{code} endpoint. Calling
 Such as what time it was created at and the original url for the new short url.
 
 Error Handling:
-Make sure it return if bad url
+Invalid Urls return 404
+
 
 Write ways to scale
 ie, use load balancer and multiple servers
