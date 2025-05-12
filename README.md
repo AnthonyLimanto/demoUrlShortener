@@ -25,7 +25,9 @@ curl -i -X POST http://localhost:8080/shorten -H "Content-Type: application/json
 ### DB:
 http://localhost:8080/h2-console/
 This is the url to access h2 in memory database.
+
 jdbc:h2:mem:short-url-db-dev
+
 User Name: dev
 
 ### API responses:
