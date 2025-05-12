@@ -6,8 +6,11 @@ gradlew bootRun
 
 ### Then in another terminal:
 curl -i -X POST http://localhost:8080/shorten -H "Content-Type: application/json" -d "{\"url\":\"https://www.originenergy.com.au/electricity-gas/plans.html\"}"\
+
 curl -i -X POST http://localhost:8080/shorten -H "Content-Type: application/json" -d "{\"url\":\"https://www.google.com\"}"\
+
 curl -i -X POST http://localhost:8080/shorten -H "Content-Type: application/json" -d "{\"url\":\"https://www.example.com\"}"\
+
 
 These 3 commands will hit our application's endpoint generating a unique nonsequential url that will redirect to the corresponding url. It will also display the response form the request.
 
@@ -19,8 +22,11 @@ curl -i -X GET http://localhost:8080/info/{code_from_shortening_url}
 
 ### Error terminal commands:
 curl -i -X GET http://localhost:8080/info/ERROR
+
 curl -i -X GET http://localhost:8080/ERROR
+
 curl -i -X POST http://localhost:8080/shorten -H "Content-Type: application/json" -d "{\"url\":\"ERROR\"}"\
+
 
 ### DB:
 http://localhost:8080/h2-console/
