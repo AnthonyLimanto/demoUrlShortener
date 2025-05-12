@@ -24,12 +24,12 @@ curl -i -X POST http://localhost:8080/shorten -H "Content-Type: application/json
 
 ### DB:
 http://localhost:8080/h2-console/
-Above is the url to access h2 in memory database.
+This is the url to access h2 in memory database.
 jdbc:h2:mem:short-url-db-dev
-User Name: test
+User Name: dev
 
 ### API responses:
-####POST
+#### POST
 /shorten
 Successfully shortening Url returns 200
 Invalid Url input returns 400
@@ -39,7 +39,7 @@ Invalid Url input returns 400
 Short url existing will redirect and return 302
 Short url given is not present in DB will return 404
 
-### GET
+#### GET
 /info/{code}
 Short url existing will return 200
 Short url given is not present in DB will return 404
