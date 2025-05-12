@@ -1,8 +1,14 @@
 ## This is an application designed to shorten Urls
 
 ### To run please move to the root folder and run:
-gradlew clean build
-gradlew bootRun
+- gradlew clean build
+- gradlew bootRun
+
+#### Tests
+Please run below to run our tests. 
+We have 2 test files, a unit test for the shortener service logic (just checking that it shortens and calls the repo, also retries on collisions)
+Another test is our integration tests that check for correct responses when calling the api.
+- gradlew tests 
 
 ### Then in another terminal:
 - curl -i -X POST http://localhost:8080/shorten -H "Content-Type: application/json" -d "{\"url\":\"https://www.originenergy.com.au/electricity-gas/plans.html\"}"\
