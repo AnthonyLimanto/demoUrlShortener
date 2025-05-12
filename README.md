@@ -5,11 +5,9 @@ gradlew clean build
 gradlew bootRun
 
 ### Then in another terminal:
-curl -i -X POST http://localhost:8080/shorten -H "Content-Type: application/json" -d "{\"url\":\"https://www.originenergy.com.au/electricity-gas/plans.html\"}"\
-
-curl -i -X POST http://localhost:8080/shorten -H "Content-Type: application/json" -d "{\"url\":\"https://www.google.com\"}"\
-
-curl -i -X POST http://localhost:8080/shorten -H "Content-Type: application/json" -d "{\"url\":\"https://www.example.com\"}"\
+- curl -i -X POST http://localhost:8080/shorten -H "Content-Type: application/json" -d "{\"url\":\"https://www.originenergy.com.au/electricity-gas/plans.html\"}"\
+- curl -i -X POST http://localhost:8080/shorten -H "Content-Type: application/json" -d "{\"url\":\"https://www.google.com\"}"\
+- curl -i -X POST http://localhost:8080/shorten -H "Content-Type: application/json" -d "{\"url\":\"https://www.example.com\"}"\
 
 
 These 3 commands will hit our application's endpoint generating a unique nonsequential url that will redirect to the corresponding url. It will also display the response form the request.
@@ -21,36 +19,33 @@ Such as what time it was created at and the original url for the new short url.
 curl -i -X GET http://localhost:8080/info/{code_from_shortening_url}
 
 ### Error terminal commands:
-curl -i -X GET http://localhost:8080/info/ERROR
-
-curl -i -X GET http://localhost:8080/ERROR
-
-curl -i -X POST http://localhost:8080/shorten -H "Content-Type: application/json" -d "{\"url\":\"ERROR\"}"\
+- curl -i -X GET http://localhost:8080/info/ERROR
+- curl -i -X GET http://localhost:8080/ERROR
+- curl -i -X POST http://localhost:8080/shorten -H "Content-Type: application/json" -d "{\"url\":\"ERROR\"}"\
 
 
 ### DB:
 http://localhost:8080/h2-console/
 This is the url to access h2 in memory database.
 
-jdbc:h2:mem:short-url-db-dev
-
-User Name: dev
+- jdbc:h2:mem:short-url-db-dev
+- User Name: dev
 
 ### API responses:
 #### POST
 /shorten
-Successfully shortening Url returns 200
-Invalid Url input returns 400
+- Successfully shortening Url returns 200
+- Invalid Url input returns 400
 
 #### GET
 /{code}
-Short url existing will redirect and return 302
-Short url given is not present in DB will return 404
+- Short url existing will redirect and return 302
+- Short url given is not present in DB will return 404
 
 #### GET
 /info/{code}
-Short url existing will return 200
-Short url given is not present in DB will return 404
+- Short url existing will return 200
+- Short url given is not present in DB will return 404
 
 ### Write ways to scale
 Use load balancer and multiple servers
